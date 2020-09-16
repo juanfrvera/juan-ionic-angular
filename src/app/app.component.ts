@@ -45,6 +45,7 @@ export class AppComponent {
   // Add or remove the "dark" class based on if the media query matches
   toggleDarkTheme(shouldAdd : boolean) {
     document.body.classList.toggle('dark', shouldAdd);
+    document.body.classList.toggle('light', !shouldAdd);
 
     this.darkMode = shouldAdd;
   }

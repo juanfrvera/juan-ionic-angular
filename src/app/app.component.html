@@ -1,4 +1,4 @@
 <ion-app>
-  <app-menu></app-menu>
+  <app-menu darkMode="{{darkMode}}" (darkModeChanged)="onDarkModeChanged($event)"></app-menu>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

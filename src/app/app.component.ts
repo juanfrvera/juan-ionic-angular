@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  darkMode : boolean;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -23,6 +26,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.checkForDarkMode();
     });
   }
 
@@ -34,11 +38,19 @@ export class AppComponent {
 
     // Listen for changes to the prefers-color-scheme media query
     prefersDark.addListener((mediaQuery) => this.toggleDarkTheme(mediaQuery.matches));
+
+    this.darkMode = prefersDark.matches;
   }
 
   // Add or remove the "dark" class based on if the media query matches
-  toggleDarkTheme(shouldAdd) {
+  toggleDarkTheme(shouldAdd : boolean) {
     document.body.classList.toggle('dark', shouldAdd);
+
+    this.darkMode = shouldAdd;
+  }
+
+  onDarkModeChanged(event){
+    this.toggleDarkTheme(event);
   }
 
   openMenu() {
